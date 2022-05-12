@@ -1,13 +1,13 @@
 # __Sectors_Performance__
-## __Overview__
+### __Overview__
 Analysis of the sector performance and trend in a crash for the S&P 500 market.
 The S&P 500 includes 500 major U.S. public companies focused primarily on market capitalisation. The S&P 500 is widely regarded as one of the best indicators of large-cap U.S. stocks and the broader stock market.<br/>
 <br/>
 Use Panda and Yahoo Finance API to get S&P50 sector data for the last four Finance recessions and visualise some aspects of the, and try to get some insights or predict into each sector's performance during crashes.<br/>
 <br/>
 
----
-## __The Answer I Am Looking For__
+
+### __The Answer I Am Looking For__
 Can we predict the price trend for find a buying or selling signal in advance during the crashes?<br/>
 
 __Decomposition Problem:__
@@ -15,19 +15,18 @@ __Decomposition Problem:__
 * What makes the price change differently?<br/>
 * Can the previous price help to make a judgment for the price trend?<br/>
 * Is there a correlation between sectors?<br/>
+<br/>
 
----
-## __Recourse__
+### __Recourse__
 All the data are from Yahoo Finance API.<br/>
+<br/>
 
----
-## __Step by Step Approach__
+### __Step by Step Approach__
 __Step 1 - Extract Data__<br/>
 Can be divided into roughly two different data extracts:<br/>
 > 1. Single symbol in a certain period<br/>
 > 2. All 11 sectors' data in a certain period<br/>
 
-<br/>
 Sample for extract data: For singal symble in a certain period<br/>
 
 ``` python
@@ -47,15 +46,18 @@ end_date = datetime(2015,11,3).date()
 SP500_df_volume = pd.DataFrame(DataReader('^GSPC', 'yahoo', start_date, end_date)['Volume'])
 ```
 
-
 Sample for extract data: Use loop to get all 11 sectors data in a a certain period<br/>
 
 ``` python
-sector_list = ['^SP500-40','^SP500-25','^SP500-30',"^SP500-35","^SP500-20","^SP500-45","^SP500-15","^SP500-60","^SP500-50","^SP500-55","^GSPE"]
+sector_list = ['^SP500-40','^SP500-25','^SP500-30',"^SP500-35","^SP500-20","^SP500-45","^SP500-15","^SP500-60",
+               "^SP500-50","^SP500-55","^GSPE"]
 
-sector_name = ["Financials","Consumer Discretionary","Consumer Staples","Health","Industrials","Information Tech","Materials","Real Estate","Tele Services","Utilities","Energy"]
+sector_name = ["Financials","Consumer Discretionary","Consumer Staples","Health","Industrials","Information Tech",
+               "Materials","Real Estate","Tele Services","Utilities","Energy"]
 
-prerformance = ['^SP500-40','^SP500-25','^SP500-30',"^SP500-35","^SP500-20","^SP500-45","^SP500-15","^SP500-60","^SP500-50","^SP500-55","^GSPE"]
+prerformance = ['^SP500-40','^SP500-25','^SP500-30',"^SP500-35","^SP500-20","^SP500-45","^SP500-15","^SP500-60",
+                "^SP500-50","^SP500-55","^GSPE"]
+                
 for stock in sector_list: 
     prerformance[sector_list.index(stock)] = yf.download(stock, start_date, end_date)
 ```
@@ -65,7 +67,6 @@ __Step 2 - Plot Data__<br/>
 Can be divided into roughly two different data plots: Single Plot & Subplot<br/>
 > 1. Single plot<br/>
 > 2. Subplot<br/>
-
 <br/>
 
 Sample for plot data: Single plot<br/>
@@ -98,23 +99,25 @@ plt.rc('font', size=12)
 plt.plot(SP500_df.index,SP500_df['Adj Close'])
 
 plt.plot(SP500_df['Adj Close'].index[start_point_index],start_point_value,"ro")
-plt.annotate(f'The start point: {start_point_date}:  ${start_point_value}', (mdates.date2num(SP500_df['Adj Close'].index[start_point_index]),start_point_value), xytext=(10, 10), 
-            textcoords='offset points', arrowprops=dict(arrowstyle='-|>',mutation_scale=30,facecolor='r'),size = 12)
+plt.annotate(f'The start point: {start_point_date}: ${start_point_value}',
+             (mdates.date2num(SP500_df['AdjClose'].index[start_point_index]),start_point_value), xytext=(10, 10), 
+             textcoords='offset points', arrowprops=dict(arrowstyle='-|>',mutation_scale=30,facecolor='r'),size = 12)
 
 plt.plot(SP500_df['Adj Close'].index[lowest_point_index],lowest_point_value,"ro")
-plt.annotate(f'The lowest point: {lowest_point_date}:  ${lowest_point_value}', (mdates.date2num(SP500_df['Adj Close'].index[lowest_point_index]),lowest_point_value), xytext=(10, 10), 
-            textcoords='offset points', arrowprops=dict(arrowstyle='-|>',mutation_scale=30,facecolor='r'),size = 12)
+plt.annotate(f'The lowest point: {lowest_point_date}: ${lowest_point_value}',
+             (mdates.date2num(SP500_df['Adj Close'].index[lowest_point_index]),lowest_point_value), xytext=(10, 10), 
+             textcoords='offset points', arrowprops=dict(arrowstyle='-|>',mutation_scale=30,facecolor='r'),size = 12)
 
 plt.plot(SP500_df['Adj Close'].index[end_point_index],end_point_value,"ro")
-plt.annotate(f'The end point: {end_point_date}:  ${end_point_value}', (mdates.date2num(SP500_df['Adj Close'].index[end_point_index]),lowest_point_value), xytext=(-220, 390), 
-            textcoords='offset points',size = 12)
+plt.annotate(f'The end point: {end_point_date}: ${end_point_value}',
+             (mdates.date2num(SP500_df['AdjClose'].index[end_point_index]),lowest_point_value), xytext=(-220, 390), 
+             textcoords='offset points',size = 12)
 
 plt.ylabel('Adj Close')
 plt.xlabel(None)
 plt.title(f"Closing Price for S&P500 ({Period})")
 plt.tight_layout()
 ```
-
 
 Sample for plot data: Subplot<br/>
 <img src="https://github.com/Ash-Tao/Sectors_Performance/blob/main/Output/Russian_Invasion_of_Ukraine/MA%20by%20Sectors%20(Russian_Invasion).png"><br/>
@@ -169,10 +172,10 @@ plt.savefig(f"MA by Sectors ({Period}).png")
 ```
 <br/>
 
----
-## The Answer I Got
-__1.  Some sectors return to the start-point more quickly than others.__<br/>
- Some sectors will recover better than others in a crash. Consumer Discretionary, Consumer Staples and Information Tech are the first to recover in several crashes. And Financials, often the market returns to the starting point, the sector's prices are still low.<br/>
+
+### The Answer I Got
+__1. Some sectors return to the start-point more quickly than others.__<br/>
+    Some sectors will recover better than others in a crash. Consumer Discretionary, Consumer Staples and Information Tech are the first to recover in several crashes. And Financials, often the market returns to the starting point, the sector's prices are still low.<br/>
 <br/>
  Due to the different causes of crashes, the correlation between the various sectors will also be different. Global events with a wide range of influence will make the correlation of each sector stronger, and the increase between the sectors will be more synchronized. Conversely, specific Events in the field have different effects on each sector. There is a specific pattern between it and the price.<br/>
 <br/>
@@ -195,9 +198,9 @@ Most of the sectors have a relationship of Moderate or above during the crashes.
 The correlations will be stronger during a crash if the events cause this crash is more globally, the prices of all sectors will fall more consistently.
 <br/>
 People's predictions regarding the future after the event will also affect the market.<br/>
+<br/>
 
----
-## Files in This Repository
+### Files in This Repository
 - [Sector.ipynb](https://github.com/Ash-Tao/Sectors_Performance/blob/main/Sector.ipynb)<br/>
 - [Results and Conclusion](https://github.com/Ash-Tao/Sectors_Performance/tree/main/Results%20and%20Conclusion)<br/>
   - Documentation.docx<br/>
