@@ -171,25 +171,25 @@ plt.savefig(f"MA by Sectors ({Period}).png")
 
 ---
 ## The Answer I Got
-__1. Some sectors return to the start-point more quickly than others.__<br/>
+__1.  Some sectors return to the start-point more quickly than others.__<br/>
  Some sectors will recover better than others in a crash. Consumer Discretionary, Consumer Staples and Information Tech are the first to recover in several crashes. And Financials, often the market returns to the starting point, the sector's prices are still low.<br/>
 <br/>
  Due to the different causes of crashes, the correlation between the various sectors will also be different. Global events with a wide range of influence will make the correlation of each sector stronger, and the increase between the sectors will be more synchronized. Conversely, specific Events in the field have different effects on each sector. There is a specific pattern between it and the price.<br/>
 <br/>
 
-__2. Trade volume makes the difference in returns (price change).__<br/>
+__2.  Trade volume makes the difference in returns (price change).__<br/>
  Trade volume is a major factor affecting market prices. Daily Return and Daily Volume are closely related to each other. The peaks and deeps on Return & Volume always seem to appear in pairs. <br/>
 <br/>
  The turning point of volume often indicates the turning point of return. If the volume trend changes (increasing to decreasing, or decreasing to increasing), which means that the price is facing a reversal point, and it is a time to switch investment strategy.<br/>
 <br/>
 
-__3. The previous price can help to make calls of buying or selling.__<br/>
+__3.  The previous price can help to make calls of buying or selling.__<br/>
  We can predict price trend based on the previous price by reviewing the crossover on the moving average. The previous price can help smooth the price and judge the direction of the price through different Crossovers.<br/>
 <br/>
  It is time to buy if the price crosses above the moving average (or shorter-term MA crosses above the longer-term MA), and a sell signal if it is below.<br/>
 <br/>
 
-__4. Correlations between sectors are different due to the different nature of global events that caused the crash.__<br/>
+__4.  Correlations between sectors are different due to the different nature of global events that caused the crash.__<br/>
 Most of the sectors have a relationship of Moderate or above during the crashes. Overall, the sector correlations in 2015 August Stock Market Selloff & Covid – 19 are more concentrated than in Bitcoin Crash & Russian Invasion of Ukraine.<br/>
 <br/>
 The correlations will be stronger during a crash if the events cause this crash is more globally, the prices of all sectors will fall more consistently.
@@ -200,12 +200,12 @@ People's predictions regarding the future after the event will also affect the m
 ## Files in This Repository
 - [Sector.ipynb](https://github.com/Ash-Tao/Sectors_Performance/blob/main/Sector.ipynb)<br/>
 - [Results and Conclusion](https://github.com/Ash-Tao/Sectors_Performance/tree/main/Results%20and%20Conclusion)<br/>
- - Documentation.docx<br/>
- - Presentation.pptx<br/>
+  - Documentation.docx<br/>
+  - Presentation.pptx<br/>
 - [sp500](https://github.com/Ash-Tao/Sectors_Performance/tree/main/sp500)<br/>
- - sp500_companies.csv<br/>
+  - sp500_companies.csv<br/>
 - [Output](https://github.com/Ash-Tao/Sectors_Performance/tree/main/Output)<br/>
- - Bitcoin_Crash<br/>
- - Covid_19<br/>
- - Russian_Invasion_of_Ukraine<br/>
- - Stock_Market_Selloff<br/>
+  - Bitcoin_Crash<br/>
+  - Covid_19<br/>
+  - Russian_Invasion_of_Ukraine<br/>
+  - Stock_Market_Selloff<br/>
